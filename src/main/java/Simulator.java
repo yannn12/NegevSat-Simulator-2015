@@ -27,8 +27,17 @@ public class Simulator
 			
 			@Override
 			public void run() {
-				for(;;)
-					con.receive();
+				for(;;){
+					EnergyPacket packet = (EnergyPacket)con.receive();
+					if(packet!= null){
+						System.out.println("Energy Packet Received");
+						for(EnergySamples sample :packet.eneSample){
+							//String temp = "Energy Packet Sample:SendTime:"+sample.sentTime	+"Current: "+sample.current+"Voltage: "+sample.voltage;
+							System.out.println("Energy Packet Sample:SendTime:"+sample.sentTime	+"Current: "+sample.current+"Voltage: "+sample.voltage);
+						}
+						System.out.println("Energy Packet Received");
+					}
+				}
 				
 			}
 		}).start();

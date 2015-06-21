@@ -2,6 +2,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.Vector;
 
 import gnu.io.CommPort;
@@ -105,12 +106,17 @@ public class ComConnection implements Connection<Packet> {
 		}
 		if(len==0)
 			return null;
+		
+
+		
+		return EnergyPacket.createPacket(Arrays.copyOfRange(buffer, 0,len));
+		
+		/*
+		
 		buffer[len] = '\0';
 		len++;
 		String str = new String(buffer,StandardCharsets.UTF_8);
-		System.out.println(str);
-		
-		return null;
+		System.out.println(str);*/
 	}
 
 }
