@@ -97,19 +97,28 @@ public class ComConnection implements Connection<Packet> {
 	@Override
 	public Packet receive() {
 		byte[] buffer = new byte[1024];
-		int len=-1;
+		byte[] temp = new byte[1];
+		int i=0;
+		int len=0;
 		try{
-			len = inStream.read(buffer, 0, 1024);
+			while(len!=-1){
+				len = inStream.read(temp, 0, 1);
+				if(len!=1)
+					continue;
+				if(temp[0]!=10){
+					buffer[i]= temp[0];
+					i++;
+				}
+				else{
+					return EnergyPacket.createPacket(Arrays.copyOfRange(buffer, 0,i-1));
+				}
+				
+			}
 		}
 		catch(Exception exp){
 			return null;
 		}
-		if(len==0)
-			return null;
-		
-
-		
-		return EnergyPacket.createPacket(Arrays.copyOfRange(buffer, 0,len));
+		return null;
 		
 		/*
 		

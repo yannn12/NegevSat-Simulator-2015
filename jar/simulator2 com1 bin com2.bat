@@ -3,7 +3,7 @@
 if "%JAVA_HOME%" == "" goto noJavaHome
 if not exist "%JAVA_HOME%\bin\java.exe" goto END
 
-"%JAVA_HOME%\bin\java.exe" -jar proxy.jar -com COM3 -inip 192.168.43.187 -inport 7776 -outip 192.168.43.187 -outport 6666
+"%JAVA_HOME%\bin\java.exe" -jar simulator-2.1.jar -port COM2 -p binary
 goto END
 
 

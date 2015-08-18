@@ -23,6 +23,7 @@ public class Simulator
         ComConnection con = new ComConnection(portName);
         runnable = new Thread(new SerialWriter(con,factory));
         runnable.start();
+        /*
         new Thread(new Runnable() {
 			
 			@Override
@@ -40,7 +41,7 @@ public class Simulator
 				}
 				
 			}
-		}).start();
+		}).start();*/
     }
 
     public static class SerialWriter implements Runnable
